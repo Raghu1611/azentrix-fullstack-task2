@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://2200032009cseh_db_user:2200032009cseh_db_user@cluster0.azexups.mongodb.net/mini-trello';
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/mini-trello';
 
 async function connectDB() {
   try {

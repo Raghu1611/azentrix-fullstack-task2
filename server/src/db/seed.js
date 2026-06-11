@@ -3,8 +3,12 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 const Board = require('../models/board');
 const Card = require('../models/card');
+const path = require('path');
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://2200032009cseh_db_user:2200032009cseh_db_user@cluster0.azexups.mongodb.net/mini-trello';
+// Load environment variables from the server/.env file
+require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
+
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/mini-trello';
 
 async function seed() {
   try {
