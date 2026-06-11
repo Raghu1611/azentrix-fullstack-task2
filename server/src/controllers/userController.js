@@ -58,4 +58,19 @@ async function removeUser(req, res, next) {
   }
 }
 
-module.exports = { listUsers, changeRole, removeUser };
+/**
+ * GET /api/users/assignees
+ * Authenticated — list user directory for assignee dropdowns
+ */
+async function listAssignees(req, res, next) {
+  try {
+    const users = await getAllUsers();
+    // Return safe data
+    const safeUsers = users.map(u => ({ id: u.id, name: u.name, email: u.email }));
+    return res.json({ users: safeUsers });
+  } catch (err) {
+    next(err);
+  }
+}
+
+module.exports = { listUsers, changeRole, removeUser, listAssignees };
