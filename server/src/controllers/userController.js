@@ -27,7 +27,7 @@ async function changeRole(req, res, next) {
       return res.status(400).json({ message: "role must be 'admin' or 'member'" });
     }
 
-    const user = await updateUserRole(Number(id), role);
+    const user = await updateUserRole(id, role);
     if (!user) return res.status(404).json({ message: 'User not found' });
 
     return res.json({ message: 'Role updated', user });
@@ -45,11 +45,11 @@ async function removeUser(req, res, next) {
     const { id } = req.params;
 
     // Prevent admin deleting themselves
-    if (Number(id) === req.user.id) {
+    if (id === req.user.id) {
       return res.status(400).json({ message: 'Cannot delete your own account' });
     }
 
-    const deleted = await deleteUser(Number(id));
+    const deleted = await deleteUser(id);
     if (!deleted) return res.status(404).json({ message: 'User not found' });
 
     return res.status(204).send();
